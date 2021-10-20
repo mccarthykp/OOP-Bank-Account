@@ -16,6 +16,20 @@ class BankAccount():
             self.balance -= amount
             print(f'Amount withdrawn: ${amount}\nNew Balance: ${self.balance}')
 
+    def get_balance(self):
+        print(f'Hello, your current account balance is ${self.balance}\n')
+        return self.balance
+
+    def add_interest(self):
+        apy = .083
+        interest = self.balance * (apy/100)
+        self.balance += interest
+        print(f'Your new balance after this month\'s interest: ${self.balance}\n')
+
+    def print_statement(self):
+        pass
+
+
 # kevinAccnt = BankAccount('Kevin')
 # kevinAccnt.deposit(1000)
-# kevinAccnt.withdraw(500)
+# kevinAccnt.add_interest()
