@@ -1,7 +1,7 @@
 from random import randint
 class BankAccount():
     def __init__(self, full_name, account_number = randint(00000000,99999999), balance = 0):
-        self.full_name = full_name
+        self.name = full_name
         self.account_number = account_number
         self.balance = balance
 
@@ -27,9 +27,12 @@ class BankAccount():
         print(f'Your new balance after this month\'s interest: ${self.balance}\n')
 
     def print_statement(self):
-        pass
+        safeAccntNum = f'****{str(self.account_number)[slice(4, 8)]}'
+        print(f'{self.name}\nAccount No.: {safeAccntNum}\nBalance: ${self.balance}')
 
 
-# kevinAccnt = BankAccount('Kevin')
+# kevinAccnt = BankAccount('Kevin McCarthy')
 # kevinAccnt.deposit(1000)
 # kevinAccnt.add_interest()
+# print(kevinAccnt.account_number)
+# kevinAccnt.print_statement()
