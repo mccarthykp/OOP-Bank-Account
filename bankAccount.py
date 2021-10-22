@@ -1,4 +1,6 @@
 from random import randint
+
+bank = []
 class BankAccount():
     def __init__(self, full_name, type = 'checking', account_number = randint(10000000,99999999), balance = 0):
         self.name = full_name
@@ -15,10 +17,11 @@ class BankAccount():
             self.type = 'checking'
             print(f'You chose an invalid account type, we have opened a checking account by default.')
 
+        bank.append(self)
 
     def deposit(self, amount):
         self.balance += amount
-        print(f'Amount Deposited: ${amount}\nNew Balance: ${self.balance}\n')
+        print(f'\nAmount Deposited: ${amount}\nNew Balance: ${self.balance}\n')
 
 
     def withdraw(self, amount):
@@ -41,35 +44,46 @@ class BankAccount():
             apy = 1.2
             interest = self.balance * (apy/100)
             self.balance += interest
-            print(f'Your new balance after this month\'s interest: ${self.balance}\n')
+            print(f'Hello {self.name}, your new balance after this month\'s interest: ${self.balance}\n')
         else:
             interest = self.balance * (apy/100)
             self.balance += interest
-            print(f'Your new balance after this month\'s interest: ${self.balance}\n')
+            print(f'Hello {self.name}, your new balance after this month\'s interest: ${self.balance}\n')
 
         
     def print_statement(self):
         safeAccntNum = f'****{str(self.account_number)[slice(4, 8)]}'
         print(f'{self.name}\nAccount No.: {safeAccntNum}\nBalance: ${self.balance}\n')
 
+def monthly_interest(financial_institution):
+    for account in financial_institution:
+        account.add_interest()
+    return
 
-kevinAccnt = BankAccount('Kevin McCarthy', 'savings')
-kevinAccnt.deposit(1000)
-kevinAccnt.add_interest()
-kevinAccnt.get_balance()
-kevinAccnt.withdraw(2000)
 
-mitchellAccnt = BankAccount('Mitchell', 'checking', 3141592)
-mitchellAccnt.deposit(400000)
-mitchellAccnt.print_statement()
-mitchellAccnt.add_interest()
-mitchellAccnt.print_statement()
-mitchellAccnt.withdraw(150)
-mitchellAccnt.print_statement()
+kevin_accnt = BankAccount('Kevin McCarthy', 'savings')
+kevin_accnt.deposit(1000)
+# kevin_accnt.add_interest()
+# kevin_accnt.get_balance()
+# kevin_accnt.withdraw(2000)
+# kevin_accnt.print_statement()
 
-emilyAccnt = BankAccount('Emily Weyda')
-emilyAccnt.deposit(38000)
-emilyAccnt.add_interest()
-emilyAccnt.get_balance()
-emilyAccnt.withdraw(2500)
-emilyAccnt.print_statement()
+mitchell_accnt = BankAccount('Mitchell', 'checking', 3141592)
+mitchell_accnt.deposit(400000)
+# mitchell_accnt.print_statement()
+# mitchell_accnt.add_interest()
+# mitchell_accnt.print_statement()
+# mitchell_accnt.withdraw(150)
+# mitchell_accnt.print_statement()
+
+emily_accnt = BankAccount('Emily Weyda')
+emily_accnt.deposit(38000)
+# emily_accnt.add_interest()
+# emily_accnt.get_balance()
+# emily_accnt.withdraw(2500)
+# emily_accnt.print_statement()
+
+# bank.append(kevin_accnt)
+# bank.append(mitchell_accnt)
+# bank.append(emily_accnt)
+monthly_interest(bank)
